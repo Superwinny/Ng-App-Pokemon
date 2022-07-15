@@ -1,16 +1,28 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { POKEMONS } from '../mock-pokemon-list';
+import { Pokemon } from '../pokemon';
 
 @Component({
   selector: 'app-detail-pokemon',
   templateUrl: './detail-pokemon.component.html',
-  styles: [
-  ]
+
 })
 export class DetailPokemonComponent implements OnInit {
 
-  constructor() { }
+  pokemonList: Pokemon[];
+  pokemon: Pokemon | undefined;
 
-  ngOnInit(): void {
+
+  constructor(private roter: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.pokemonList = POKEMONS;
+    const pokemonId: string | null = this.roter.snapshot.paramMap.get('id');
+    if (pokemonId) {
+      this.pokemon = this.pokemonList.find(pokemon => pokemon.id == +pokemonId)
+    }
+
   }
 
 }
