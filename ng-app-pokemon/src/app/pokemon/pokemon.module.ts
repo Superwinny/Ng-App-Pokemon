@@ -11,10 +11,10 @@ import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
 import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component';
 
 const pokemonRoutes: Routes = [
-  
+  { path: 'edit/pokemon/:id', component: EditPokemonComponent },
   { path: 'pokemons', component: ListePokemonComponent },
   { path: 'pokemons/:id', component: DetailPokemonComponent },
-  { path: 'edit/pokemon/:id', component: EditPokemonComponent },
+
 ];
 
 
