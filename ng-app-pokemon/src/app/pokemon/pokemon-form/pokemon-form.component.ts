@@ -34,19 +34,24 @@ export class PokemonFormComponent implements OnInit {
     }
 
   }
-  isTypesValid(type: string): boolean{
-     if(this.pokemon.types.length == 1 && this.hasType(type)){
+  isTypesValid(type: string): boolean {
+    if (this.pokemon.types.length == 1 && this.hasType(type)) {
       return false;
-     }
-     if(this.pokemon.types.length > 2 && !this.hasType(type)){
+    }
+    if (this.pokemon.types.length > 2 && !this.hasType(type)) {
       return false;
-     }
+    }
 
     return true
   }
   onSubmit() {
-    console.log('Submit form !');
-    this.router.navigate(['/pokemons', this.pokemon.id]); // Redirige l'utilisateur sur la page du pokemon qui vient d'etre modifier
+    this.pokemonService.updatePokemon(this.pokemon)
+    .subscribe(() =>  this.router.navigate(['/pokemons', this.pokemon.id]));// Redirige l'utilisateur sur la page du pokemon qui vient d'etre modifier
+      
+   
+  
 
+    
+    
   }
 }
