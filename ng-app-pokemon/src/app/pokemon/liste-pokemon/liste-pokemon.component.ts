@@ -16,7 +16,7 @@ constructor(
   private pokemonService: PokemonService
   ){}
   ngOnInit(){
-    this.pokemonList= this.pokemonService.getPokemonList();
+     this.pokemonService.getPokemonList().subscribe(pokemonList => this.pokemonList = pokemonList); // S'abonner au flux de donné qui va faire une requette réseaux qui retourne une liste de pokemon 
   }
 
   goToPokemon(pokemon: Pokemon){
