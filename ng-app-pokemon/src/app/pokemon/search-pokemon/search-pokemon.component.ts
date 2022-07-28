@@ -10,7 +10,7 @@ import { PokemonService } from '../pokemon.service';
 })
 export class SearchPokemonComponent implements OnInit {
   searchTerms = new Subject<string>(); // searchTerm sert a construire ce flux de donné
-  pokemons$: Observable<Pokemon[] | any>;
+  pokemons$: Observable<Pokemon[]>;
 
 
   constructor(private router: Router, private pokemonService: PokemonService) { }

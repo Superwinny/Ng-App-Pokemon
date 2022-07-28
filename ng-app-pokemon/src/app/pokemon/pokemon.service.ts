@@ -20,12 +20,16 @@ export class PokemonService {
     )
   }
 
-  searchPokemonList(term: string): Observable<Pokemon|undefined>{
-    return this.http.get<Pokemon[]> ('api/pokemons/?name=${term}').pipe(
-    tap((response) => this.log(response)),
-      catchError((error) => this.handleError(error, []))
-    );
+  searchPokemonList(term: string): Observable<Pokemon[]> {
+    if (term.length <= 1) {
+      return of([]);
+    } else {
+      return this.http.get<Pokemon[]>(`api/pokemons/?name=${term}`).pipe(
+        tap((response) => this.log(response)),
+        catchError((error) => this.handleError(error, []))
+      );
     }
+  }
 
   getPokemonById(pokemonId: number): Observable<Pokemon | undefined> {
     return this.http.get<Pokemon>(`api/pokemons/${pokemonId}`).pipe(
@@ -33,6 +37,7 @@ export class PokemonService {
       catchError((error) => this.handleError(error, undefined))
     );
   }
+
   addPokemon(pokemon: Pokemon): Observable<Pokemon> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
