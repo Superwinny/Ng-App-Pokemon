@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
   ]
 })
 export class LoginComponent {
-  message: string = 'Vous êtes déconnecté. (pikachu/pikachu)';
+  message: string = 'Vous êtes déconnecté. (pikachu/pikachu2)';
   name: string;
   password: string;
   auth: AuthService;
@@ -20,7 +20,7 @@ export class LoginComponent {
   ngOnInit() {
     this.auth = this.authService;
   }
-  
+
   // Informe l'utilisateur sur son authentfication.
   setMessage() {
     this.message = this.auth.isLoggedIn ?
